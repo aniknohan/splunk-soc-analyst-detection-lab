@@ -13,6 +13,48 @@ This repository turns my Splunk lab work into a structured security-operations p
 
 The emphasis is not just on writing searches. Each detection is documented with the security question being answered, the SPL logic, the expected signal, and the follow-up questions a SOC analyst should ask before deciding whether activity is malicious.
 
+## Skills & Technologies
+
+**SIEM & Security Operations**
+- Splunk Enterprise
+- Security Information and Event Management (SIEM)
+- SOC Alert Triage
+- Log Analysis
+- Threat Detection
+- Threat Hunting
+- Security Investigation
+
+**Splunk / SPL**
+- Search Processing Language (SPL)
+- stats
+- eventstats
+- streamstats
+- timechart
+- chart
+- top
+- rare
+- eval
+- rex
+- regex
+- where
+- dedup
+- lookups
+- subsearches
+- transactions
+- multivalue functions
+
+**Security Analysis**
+- Authentication Monitoring
+- Brute-Force Detection
+- PowerShell Analysis
+- Process Execution Analysis
+- Parent/Child Process Analysis
+- Network Connection Analysis
+- Behavioral Baselining
+- False-Positive Analysis
+- Detection Tuning
+- MITRE ATT&CK Mapping
+
 ## What this project demonstrates
 
 - Building efficient SPL searches with filters, Boolean logic, pipes, `where`, `fields`, `table`, `sort`, `dedup`, `rex`, and `regex`.
@@ -35,6 +77,18 @@ The emphasis is not just on writing searches. Each detection is documented with 
 | Suspicious process execution | Did Microsoft Word launch PowerShell? | [`spl/05_suspicious_process_execution.spl`](spl/05_suspicious_process_execution.spl) |
 | Rare process hunting | Which processes are least common in the environment? | [`spl/06_rare_processes.spl`](spl/06_rare_processes.spl) |
 | Network anomaly review | Is a source touching many ports or producing excessive connections? | [`spl/07_network_connections.spl`](spl/07_network_connections.spl) |
+
+## MITRE ATT&CK Coverage
+
+Where the observed behavior supports a meaningful mapping, detections are aligned with the MITRE ATT&CK framework. ATT&CK mappings are used as investigative context rather than as proof that a specific adversary technique occurred.
+
+| Detection | MITRE ATT&CK | Tactic |
+|---|---|---|
+| Brute-Force Detection | T1110 - Brute Force | Credential Access |
+| Suspicious PowerShell Activity | T1059.001 - PowerShell | Execution |
+| Successful Login After Suspicious Failures | T1078 - Valid Accounts | Defense Evasion / Persistence / Privilege Escalation / Initial Access |
+
+Some hunting searches in this repository intentionally do not receive a direct ATT&CK technique mapping when the observed telemetry alone is insufficient to establish a specific adversary behavior. This avoids overstating what the evidence demonstrates.
 
 ## Featured evidence
 
@@ -104,7 +158,16 @@ The practical investigations in this repository follow a repeatable process:
 4. **Apply a threshold or filter** - use `where` to isolate the activity that deserves investigation.
 5. **Add context** - review user, host, source IP, destination, process, command line, time, and related events.
 6. **Validate before escalation** - account for legitimate causes and environment-specific baselines before treating a match as malicious.
+7. 
+## Detection & Investigation Lifecycle
 
+Each security use case in this project follows a detection-engineering and SOC investigation mindset:
+
+**Detection → Validation → Enrichment → Investigation → Assessment → Escalation**
+
+A Splunk search result is treated as an investigative lead rather than automatic proof of malicious activity. Findings are validated using available context such as user identity, source and destination systems, process relationships, command-line activity, historical behavior, authentication events, and network telemetry.
+
+This approach helps reduce false positives while preserving meaningful security signals that may require escalation.
 ## Repository structure
 
 ```text
@@ -145,6 +208,24 @@ Field names vary by data source. In a real environment, normalize the SPL to the
 ## Detection engineering note
 
 Thresholds in this project are **lab examples, not universal production rules**. A count such as 10 failed logins or 20 distinct destination ports can be useful for learning, but a production SOC should tune thresholds using its own baseline, authentication model, service accounts, scanners, administrative tools, and normal network behavior. The goal is to reduce false positives while preserving meaningful security signal.
+
+## Portfolio Highlights
+
+This project demonstrates the ability to:
+
+- Translate security questions into SPL searches.
+- Investigate authentication anomalies and potential credential attacks.
+- Detect suspicious PowerShell execution patterns.
+- Analyze parent-child process relationships.
+- Perform frequency-based threat hunting.
+- Investigate unusual network activity.
+- Correlate multiple security events during investigations.
+- Distinguish detection signals from confirmed malicious activity.
+- Identify legitimate causes and potential false positives.
+- Define investigation and escalation criteria.
+- Apply detection tuning and behavioral baselining.
+- Map appropriate security behaviors to MITRE ATT&CK.
+- Document findings using a repeatable SOC investigation methodology.
 
 ## Documentation
 
