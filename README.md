@@ -43,20 +43,56 @@ The repository contains **all 81 screenshots extracted from the source lab PDF**
 ### Search and filtering
 ![Basic Splunk search](assets/screenshots/page-001-image-01.png)
 
+**Objective:** Establish the initial search scope and identify relevant events for further investigation.
+
+**Analyst Note:** This demonstrates the foundation of a Splunk investigation: selecting the appropriate dataset and filtering events before performing deeper analysis. In a SOC environment, narrowing the search early helps reduce noise and allows the analyst to focus on security-relevant activity.
+
+**Security Relevance:** Effective filtering is essential during alert triage and threat hunting because analysts often need to isolate specific hosts, users, IP addresses, processes, or event types from large volumes of log data.
+
 ### Statistical analysis
 ![Stats example](assets/screenshots/page-014-image-01.png)
+
+**Objective:** Summarize event data with statistical commands to identify patterns, frequencies, and potentially unusual activity.
+
+**Analyst Note:** Statistical analysis transforms raw Splunk events into meaningful results that are easier to investigate. Commands such as `stats` allow a SOC analyst to aggregate activity by fields such as user, source IP, host, process, or destination.
+
+**Security Relevance:** Aggregating security events helps analysts identify high-volume sources, frequently targeted accounts, unusual processes, and other patterns that may not be obvious when reviewing individual raw events.
 
 ### Time-based analysis
 ![Timechart example](assets/screenshots/page-015-image-02.png)
 
+**Objective:** Analyze how event activity changes over time and identify spikes, trends, or unusual periods of activity.
+
+**Analyst Note:** Time-based analysis is important in security monitoring because suspicious behavior often becomes more visible when events are viewed chronologically. The `timechart` command helps transform raw events into a timeline that can reveal sudden increases or abnormal patterns.
+
+**Security Relevance:** A sharp increase in events over a short period may indicate brute-force attempts, scanning activity, malware execution, authentication abuse, or another security event that deserves further investigation.
+
 ### Field manipulation
 ![Eval example](assets/screenshots/page-020-image-01.png)
+
+**Objective:** Create and transform fields to make raw event data more useful for security analysis.
+
+**Analyst Note:** The `eval` command allows analysts to create calculated fields, modify existing values, and apply conditional logic to search results. This helps turn raw log information into fields that are easier to interpret during an investigation.
+
+**Security Relevance:** Field manipulation can be used to classify events, normalize inconsistent data, calculate values, and create indicators that help distinguish normal activity from events requiring additional investigation.
 
 ### Lookups and correlation
 ![Lookup/correlation evidence](assets/screenshots/page-049-image-01.png)
 
+**Objective:** Enrich Splunk event data with additional information to provide more context during an investigation.
+
+**Analyst Note:** Lookups allow analysts to match fields from search results against external reference data, such as asset inventories, user information, IP classifications, or other contextual datasets. Correlating this information can make raw security events significantly more meaningful.
+
+**Security Relevance:** Enrichment helps a SOC analyst determine whether an event involves a known asset, privileged user, suspicious indicator, or other important context. This additional information can improve alert triage and help analysts prioritize events that require deeper investigation.
+
 ### Multivalue analysis
 ![Multivalue evidence](assets/screenshots/page-088-image-01.png)
+
+**Objective:** Analyze fields containing multiple values and extract useful information from complex event data.
+
+**Analyst Note:** Splunk multivalue functions allow analysts to work with fields that contain more than one value. Functions such as `split()`, `mvcount()`, and `mvindex()` can separate values, count them, or retrieve specific elements for further analysis.
+
+**Security Relevance:** Security logs can contain multiple IP addresses, ports, users, processes, or other values within a single event. Multivalue analysis helps analysts break these fields apart and identify individual indicators that may require further investigation.
 
 ## Analyst workflow
 
