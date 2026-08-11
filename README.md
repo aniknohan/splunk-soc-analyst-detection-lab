@@ -119,7 +119,8 @@ splunk-soc-analyst-lab/
 │   ├── 03-powershell.md
 │   ├── 04-suspicious-process.md
 │   ├── 05-rare-process.md
-│   └── 06-network-connections.md
+│   ├── 06-network-connections.md
+│   └── 07-successful-logins.md
 ├── docs/
 │   ├── splunk-skill-map.md
 │   ├── soc-investigation-notes.md
