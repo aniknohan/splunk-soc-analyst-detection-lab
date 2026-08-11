@@ -80,8 +80,6 @@ A high failure count alone does not confirm malicious activity. The source IP, t
 
 ### Investigation Next Steps
 
-### Investigation Next Steps
-
 - Identify which user accounts are experiencing the authentication failures.
 - Identify the source IP addresses generating the failures.
 - Determine whether the source IP is internal or external.
