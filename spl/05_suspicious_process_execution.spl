@@ -1,0 +1,6 @@
+# Suspicious parent/child process relationship from the lab
+index=main parent_process="winword.exe" process_name="powershell.exe"
+
+# Add investigation context when available
+index=main parent_process="winword.exe" process_name="powershell.exe"
+| table _time host user parent_process process_name command_line

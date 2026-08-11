@@ -1,0 +1,20 @@
+# Failed-login investigation examples
+index=main sourcetype=secure "Failed password"
+
+# Count failures by user
+index=main sourcetype=secure "Failed password"
+| stats count by user
+| sort - count
+
+# Count failures by source IP
+index=main sourcetype=secure "Failed password"
+| stats count by src_ip
+| sort - count
+
+# Top five source IPs
+index=main sourcetype=secure "Failed password"
+| top limit=5 src_ip
+
+# Failure trend over time
+index=main sourcetype=secure "Failed password"
+| timechart count

@@ -1,0 +1,121 @@
+# Splunk SOC Analyst Detection & Investigation Lab
+
+> A recruiter-ready Splunk portfolio project demonstrating Search Processing Language (SPL), log analysis, statistical investigation, field manipulation, and practical SOC detection workflows.
+
+![Splunk](https://img.shields.io/badge/Splunk-Enterprise-000000?logo=splunk&logoColor=white)
+![Focus](https://img.shields.io/badge/Focus-SOC%20Analysis-2ea44f)
+![Language](https://img.shields.io/badge/Query%20Language-SPL-4c8bf5)
+![Evidence](https://img.shields.io/badge/Lab%20Evidence-81%20Screenshots-orange)
+
+## Project overview
+
+This repository turns my Splunk lab work into a structured security-operations portfolio. The project begins with core SPL search and data-manipulation skills and then applies those skills to analyst workflows such as failed-login analysis, brute-force detection, successful-login review, suspicious PowerShell activity, suspicious process execution, rare-process hunting, and network-connection analysis.
+
+The emphasis is not just on writing searches. Each detection is documented with the security question being answered, the SPL logic, the expected signal, and the follow-up questions a SOC analyst should ask before deciding whether activity is malicious.
+
+## What this project demonstrates
+
+- Building efficient SPL searches with filters, Boolean logic, pipes, `where`, `fields`, `table`, `sort`, `dedup`, `rex`, and `regex`.
+- Summarizing and visualizing event data with `stats`, `chart`, `timechart`, `top`, `rare`, `eventstats`, and `streamstats`.
+- Creating and transforming fields with `eval`, `if()`, `case()`, `coalesce()`, string functions, time functions, and multivalue functions.
+- Working with lookups, correlation commands, subsearches, transactions, result modification, and macros.
+- Investigating authentication anomalies and identifying high-volume failed-login sources.
+- Detecting suspicious PowerShell command-line indicators and unusual parent/child process relationships.
+- Hunting rare processes and reviewing command line, user, host, execution path, parent process, and network behavior.
+- Using destination-port diversity and connection volume to identify potentially suspicious network behavior.
+
+## SOC detection use cases
+
+| Use case | Security question | SPL file |
+|---|---|---|
+| Failed login analysis | Which users or IPs generate the most authentication failures? | [`spl/01_failed_logins.spl`](spl/01_failed_logins.spl) |
+| Brute-force detection | Which sources exceed a failed-login threshold? | [`spl/02_brute_force.spl`](spl/02_brute_force.spl) |
+| Successful login review | Did a successful authentication follow suspicious failures? | [`spl/03_successful_logins.spl`](spl/03_successful_logins.spl) |
+| PowerShell detection | Are encoded, hidden, bypass, or download-oriented PowerShell commands present? | [`spl/04_powershell_detection.spl`](spl/04_powershell_detection.spl) |
+| Suspicious process execution | Did Microsoft Word launch PowerShell? | [`spl/05_suspicious_process_execution.spl`](spl/05_suspicious_process_execution.spl) |
+| Rare process hunting | Which processes are least common in the environment? | [`spl/06_rare_processes.spl`](spl/06_rare_processes.spl) |
+| Network anomaly review | Is a source touching many ports or producing excessive connections? | [`spl/07_network_connections.spl`](spl/07_network_connections.spl) |
+
+## Featured evidence
+
+The repository contains **all 81 screenshots extracted from the source lab PDF**. A few representative examples are shown here; the complete ordered collection is in [`docs/evidence-gallery.md`](docs/evidence-gallery.md).
+
+### Search and filtering
+![Basic Splunk search](assets/screenshots/page-001-image-01.png)
+
+### Statistical analysis
+![Stats example](assets/screenshots/page-014-image-01.png)
+
+### Time-based analysis
+![Timechart example](assets/screenshots/page-015-image-02.png)
+
+### Field manipulation
+![Eval example](assets/screenshots/page-020-image-01.png)
+
+### Lookups and correlation
+![Lookup/correlation evidence](assets/screenshots/page-049-image-01.png)
+
+### Multivalue analysis
+![Multivalue evidence](assets/screenshots/page-088-image-01.png)
+
+## Analyst workflow
+
+The practical investigations in this repository follow a repeatable process:
+
+1. **Define the question** - for example, “Which IP generated the most failed logins?”
+2. **Narrow the data** - choose the relevant index, sourcetype, process, authentication phrase, or network field.
+3. **Aggregate the signal** - use `stats`, `top`, `rare`, `timechart`, or distinct counts.
+4. **Apply a threshold or filter** - use `where` to isolate the activity that deserves investigation.
+5. **Add context** - review user, host, source IP, destination, process, command line, time, and related events.
+6. **Validate before escalation** - account for legitimate causes and environment-specific baselines before treating a match as malicious.
+
+## Repository structure
+
+```text
+splunk-soc-analyst-lab/
+├── README.md
+├── assets/
+│   ├── image_manifest.csv
+│   └── screenshots/                  # 81 source-lab screenshots
+├── detections/
+│   ├── 01-failed-logins.md
+│   ├── 02-brute-force.md
+│   ├── 03-powershell.md
+│   ├── 04-suspicious-process.md
+│   ├── 05-rare-process.md
+│   └── 06-network-connections.md
+├── docs/
+│   ├── splunk-skill-map.md
+│   ├── soc-investigation-notes.md
+│   └── evidence-gallery.md
+└── spl/
+    ├── 00_spl_command_examples.spl
+    ├── 01_failed_logins.spl
+    ├── 02_brute_force.spl
+    ├── 03_successful_logins.spl
+    ├── 04_powershell_detection.spl
+    ├── 05_suspicious_process_execution.spl
+    ├── 06_rare_processes.spl
+    └── 07_network_connections.spl
+```
+
+## How to reproduce the searches
+
+Use a Splunk Enterprise or Splunk Cloud search environment containing fields comparable to the lab data. The examples in the source material primarily use `index=main`, Linux `sourcetype=secure` authentication events, web/tutorial data, and generic endpoint/network fields such as `process_name`, `parent_process`, `command_line`, `src_ip`, `dest_ip`, `dest_port`, and `protocol`.
+
+Field names vary by data source. In a real environment, normalize the SPL to the fields produced by your Sysmon, Windows Event Log, EDR, firewall, authentication, or network telemetry before operational use.
+
+## Detection engineering note
+
+Thresholds in this project are **lab examples, not universal production rules**. A count such as 10 failed logins or 20 distinct destination ports can be useful for learning, but a production SOC should tune thresholds using its own baseline, authentication model, service accounts, scanners, administrative tools, and normal network behavior. The goal is to reduce false positives while preserving meaningful security signal.
+
+## Documentation
+
+- [`docs/splunk-skill-map.md`](docs/splunk-skill-map.md) - commands and concepts demonstrated across the lab.
+- [`docs/soc-investigation-notes.md`](docs/soc-investigation-notes.md) - practical investigation questions and interpretation guidance.
+- [`docs/evidence-gallery.md`](docs/evidence-gallery.md) - every screenshot from the source PDF, in page order.
+- [`detections/`](detections/) - recruiter-friendly detection write-ups with SPL and triage logic.
+
+---
+
+**Portfolio focus:** Splunk | SPL | SIEM | SOC Analysis | Authentication Monitoring | Brute Force | PowerShell | Process Analysis | Threat Hunting | Network Analysis

@@ -1,0 +1,41 @@
+# Core SPL examples demonstrated in the lab
+
+# Search / filtering
+index=main
+index=main productId=WC*
+index=main productId=WC-SH-A02 OR productId=FS-SG-G03
+index=main NOT productId=WC-SH-A02
+index=main productId IN ("WC-SH-A02","FS-SG-G03","BS-AG-G09")
+index=main | where host!="www3"
+index=main | fields host source
+index=main | table host source
+index=main | rename host AS Server
+index=main | sort - host
+index=main | head 10
+index=main | tail 10
+index=main | dedup source
+index=main | rex "(?<ip>\\d+\\.\\d+\\.\\d+\\.\\d+)"
+index=main | regex _raw="product\\.screen"
+
+# Statistics
+index=main | stats count
+index=main | chart count BY host source
+index=main | timechart count
+index=main | top source
+index=main | rare source
+index=main | eventstats count by productId
+index=main | streamstats count
+
+# Eval / fields
+index=main | eval company="Buttercup Games"
+index=main | eval result=if(host="www1","YES","NO")
+index=main | eval server=case(host="www1","Server 1",host="www2","Server 2",host="www3","Server 3")
+index=main | eval answer=coalesce(choice1,choice2,choice3)
+
+# Multivalue / test data
+| makeresults
+| eval ports="22,80,443"
+| makemv delim="," ports
+| eval port_count=mvcount(ports)
+| eval first_port=mvindex(ports,0)
+| table ports port_count first_port

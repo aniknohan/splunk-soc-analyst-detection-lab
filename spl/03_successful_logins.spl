@@ -1,0 +1,6 @@
+# Successful Linux password authentications
+index=main sourcetype=secure "Accepted password"
+
+# Present key context if the fields exist in your data
+index=main sourcetype=secure "Accepted password"
+| table _time user src_ip host

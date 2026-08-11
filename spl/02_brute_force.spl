@@ -1,0 +1,10 @@
+# Lab heuristic: investigate sources with repeated authentication failures
+index=main sourcetype=secure "Failed password"
+| stats count by src_ip
+| where count > 10
+| sort - count
+
+# Show targeted users and sources together
+index=main sourcetype=secure "Failed password"
+| stats count by user src_ip
+| sort - count

@@ -1,0 +1,15 @@
+# Display important network fields
+index=main
+| table _time src_ip dest_ip dest_port protocol
+
+# Possible port scanning: one source contacts many distinct destination ports
+index=main
+| stats dc(dest_port) as Ports by src_ip
+| where Ports > 20
+| sort - Ports
+
+# Excessive connection volume
+index=main
+| stats count by src_ip
+| where count > 1000
+| sort - count

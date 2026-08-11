@@ -1,0 +1,8 @@
+# Least common processes
+index=main
+| rare process_name
+
+# A practical frequency view for triage
+index=main
+| stats count by process_name
+| sort count

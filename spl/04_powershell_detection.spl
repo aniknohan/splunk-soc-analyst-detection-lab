@@ -1,0 +1,16 @@
+# Basic PowerShell search
+index=main "powershell.exe"
+
+# Search by process field
+index=main process_name="powershell.exe"
+| table _time host user process_name command_line
+
+# Encoded PowerShell commands
+index=main process_name="powershell.exe" (EncodedCommand OR "-enc")
+
+# Hidden window indicators
+index=main process_name="powershell.exe" (Hidden OR WindowStyle)
+
+# Download-oriented commands
+index=main process_name="powershell.exe"
+| search Invoke-WebRequest OR DownloadFile OR Net.WebClient
