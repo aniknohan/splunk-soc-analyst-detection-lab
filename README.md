@@ -237,3 +237,9 @@ This project demonstrates the ability to:
 ---
 
 **Portfolio focus:** Splunk | SPL | SIEM | SOC Analysis | Authentication Monitoring | Brute Force | PowerShell | Process Analysis | Threat Hunting | Network Analysis
+
+## Author
+
+**Anik Nohan**
+
+Cybersecurity | SOC Analysis | Blue Team | Splunk
