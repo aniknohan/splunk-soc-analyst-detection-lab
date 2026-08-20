@@ -278,4 +278,3 @@ This hands-on Splunk SOC Analyst Detection & Investigation Lab was completed to 
 
 ---
 
-*This project was completed in a controlled lab environment for Splunk, SOC analysis, threat detection, and defensive-security portfolio demonstration.*
