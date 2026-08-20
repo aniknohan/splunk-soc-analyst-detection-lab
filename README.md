@@ -238,8 +238,44 @@ This project demonstrates the ability to:
 
 **Portfolio focus:** Splunk | SPL | SIEM | SOC Analysis | Authentication Monitoring | Brute Force | PowerShell | Process Analysis | Threat Hunting | Network Analysis
 
+## Disclaimer
+
+This project was performed entirely within a **controlled laboratory environment** for educational, SOC training, and cybersecurity portfolio purposes.
+
+All logs, events, detections, searches, thresholds, and investigation scenarios were used for training and demonstration purposes. The detection logic and thresholds documented in this project are lab examples and should be validated, baselined, and tuned before use in a production security environment.
+
+No real-world systems, organizations, user accounts, or third-party data were targeted or compromised during this project.
+
+---
+
 ## Author
 
 **Anik Nohan**
 
-Cybersecurity | SOC Analysis | Blue Team | Splunk
+This hands-on Splunk SOC Analyst Detection & Investigation Lab was completed to demonstrate practical skills in:
+
+- Splunk Enterprise and Search Processing Language (SPL)
+- SIEM monitoring and SOC alert triage
+- Security log analysis and investigation
+- Authentication monitoring and failed-login analysis
+- Brute-force detection
+- Successful-login investigation
+- Suspicious PowerShell activity detection
+- Process and parent-child process analysis
+- Rare-process threat hunting
+- Network connection analysis
+- Statistical and time-based event analysis
+- Field extraction, manipulation, and enrichment
+- Behavioral baselining and false-positive analysis
+- Detection tuning and validation
+- MITRE ATT&CK mapping
+- SOC investigation and escalation methodology
+- Security investigation documentation
+
+### Tools & Frameworks
+
+`Splunk Enterprise` • `SPL` • `SIEM` • `MITRE ATT&CK` • `GitHub`
+
+---
+
+*This project was completed in a controlled lab environment for Splunk, SOC analysis, threat detection, and defensive-security portfolio demonstration.*
