@@ -47,8 +47,6 @@ The threshold is an investigation trigger rather than proof of compromise. Its s
 
 ### Investigation Next Steps
 
-### Investigation Next Steps
-
 - Identify which user accounts were targeted by the source IP.
 - Determine whether the activity targeted one account or multiple accounts.
 - Prioritize review of privileged accounts such as `admin`, `root`, or `administrator`.
@@ -60,8 +58,6 @@ The threshold is an investigation trigger rather than proof of compromise. Its s
 - Review subsequent activity associated with the authenticated user and source IP.
 - Correlate the source with firewall, VPN, endpoint, EDR, and other authentication telemetry when available.
 - Consider containment actions such as blocking the source only after validating the activity and following organizational policy.
-
-### Detection Tuning
 
 ### Detection Tuning
 

@@ -48,14 +48,6 @@ A useful first step is displaying important network fields:
 ```spl
 index=main
 | table _time src_ip dest_ip dest_port protocol
-
-### Network Activity Review
-
-A useful first step is displaying important network fields:
-
-```spl
-index=main
-| table _time src_ip dest_ip dest_port protocol
 ```
 
 This allows the analyst to review when connections occurred, which systems initiated them, where they connected, and which destination services were accessed.

@@ -1,6 +1,6 @@
 # Complete Evidence Gallery
 
-Every embedded screenshot from the source Splunk lab PDF is preserved here in the same page order. The PDF contains 81 unique embedded images across 62 pages.
+Every screenshot from the source Splunk lab PDF that is included in this repository is shown here in page order: **80 screenshots**. The extraction manifest lists 81 images; the page 89 image (`page-089-image-01.png`) is not included in the repository.
 
 ## BASIC SEARCH & FILTERING / SEARCH
 
@@ -285,4 +285,4 @@ Every embedded screenshot from the source Splunk lab PDF is preserved here in th
 
 ## MORE FIELDS WITH MAKERESULTS
 
-![Splunk evidence - page 89 image 1](../assets/screenshots/page-089-image-01.png)
+*Screenshot for page 89 is not included in this repository.*

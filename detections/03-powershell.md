@@ -40,6 +40,7 @@ PowerShell activity can first be isolated by process name and important investig
 ```spl
 index=main process_name="powershell.exe"
 | table _time host user process_name command_line
+```
 
 Encoded PowerShell execution can then be investigated with:
 
