@@ -1,0 +1,40 @@
+<dashboard version="1.1">
+  <label>BOTS-001 | Network Alert Triage</label>
+  <description>Historical BOTS v1 training data. Review vendor severity separately and pivot to endpoint evidence before attribution.</description>
+  <row>
+    <panel>
+      <chart>
+        <title>Top FortiGate signatures</title>
+        <search>
+          <query>index=botsv1 sourcetype=fortigate_utm attack=* | top limit=10 attack</query>
+          <earliest>0</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="charting.chart">bar</option>
+      </chart>
+    </panel>
+    <panel>
+      <chart>
+        <title>Suricata alert severity</title>
+        <search>
+          <query>index=botsv1 sourcetype=suricata | spath | search event_type=alert | eval vendor_severity=coalesce(severity, 'alert.severity', "unknown") | stats count by vendor_severity</query>
+          <earliest>0</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="charting.chart">column</option>
+      </chart>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <table>
+        <title>Reverse-shell signature candidates</title>
+        <search>
+          <query>index=botsv1 sourcetype=fortigate_utm "MS.Windows.CMD.Reverse.Shell" | table _time srcip srcport dstip dstport attack severity action | sort 0 _time</query>
+          <earliest>0</earliest>
+          <latest>now</latest>
+        </search>
+      </table>
+    </panel>
+  </row>
+</dashboard>

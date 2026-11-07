@@ -231,3 +231,7 @@ Also see my **[Windows DFIR Security Event Investigation](https://github.com/ani
 ## License
 
 Released under the [MIT License](LICENSE).
+
+## BOTS v1 Investigation Lab
+
+[Work case BOTS-001](labs/botsv1-network-triage/README.md) to investigate a firewall reverse-shell alert and correlate FortiGate, Suricata, and Windows endpoint evidence. Includes SPL searches, a Classic Dashboard, and a case-report worksheet.
